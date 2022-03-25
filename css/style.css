@@ -1,0 +1,9 @@
+body {
+  font-style: sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40vh;
+}
