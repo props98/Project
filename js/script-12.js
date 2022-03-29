@@ -36,6 +36,8 @@ function rememberMyFilms () {
     for (let i = 0; i < 2; i++) {
         let a = prompt('Один из последних просмотренных фильмов?', ''),
             b = prompt('На сколько оцените его?', '0');
+
+            a.slice(0, 2).toLocaleLowerCase();
     
         if (a != null && b != null && a != '' && b != '' && a.length < 20) {
             personalMovieDB.movies[a] = b;
@@ -73,14 +75,15 @@ function showMyDB (hidden) {
 
 function writeYourGenres () {
     for (let i = 1; i <= 3; i++) {
-        // personalMovieDB.genres.push(genres);
-        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`, '');
+        // personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`, '');
+        let genres = prompt(`Ваш любимый жанр под номером ${i}`, '');
+        personalMovieDB.genres.push(genres.toLocaleLowerCase()); //! Методом .push()
     };
 }
 
 
-// rememberMyFilms();
-// detectPersonalLevel();
+rememberMyFilms();
+detectPersonalLevel();
 showMyDB(personalMovieDB.private);
 writeYourGenres();
 
