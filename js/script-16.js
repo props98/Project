@@ -1,6 +1,6 @@
 "use strict";
 
-//! Простое копирование примитивов
+//! Простое копирование примитивов, передаются по значению
 let a = 5,
     b = a;
 
@@ -8,19 +8,19 @@ b = b + 5;
 console.log(b);
 console.log(a);
 
-// const obj = {
-//     a: 5,
-//     b: 1
-// };
-                     
-                     //! Передача по ссылке   
+//! Передача по ссылке 
+const obj = {
+    a: 5,
+    b: 1
+};
 // const copy = obj; //! obj передает ссылку на объект ! НЕ СОЗДАЕТ КОПИЮ
 
 // copy.a = 10; 
 // console.log(copy);
 // console.log(obj);
 
-//! 
+//! Использование функции для копировании объекта ||||>>>>  Первый метод клонирования
+//! Поверхностная копия объекта (Без вложенния, только первый уровень вложенности)
 
 function copy(mainObj) {
     let objCopy = {};
@@ -30,7 +30,7 @@ function copy(mainObj) {
         objCopy[key] = mainObj[key];
     }
     return objCopy;
-}
+};
 
 const numbers = {
     a: 2,
@@ -41,38 +41,43 @@ const numbers = {
     }
 };
 
-const newNumbers = copy(numbers);
+const newNumbers = copy(numbers); //! Создание копии объета через функцию
 
-newNumbers.a = 10;
-newNumbers.c.x = 10;
+newNumbers.a = 10; //! Внесли изменения в скопированное свойство объекта
+// newNumbers.c.x = 10; //! Измения в копии не сработает
 
-// console.log(numbers);
-// console.log(newNumbers);
+console.log(numbers);
+console.log(newNumbers);
+
+//! Копирования объекта с помощью метода >>>>>> Object.asssign() ||||>>>> Второй метод клонирования
 
 const add = {
     d: 17,
     e: 20
 };
 
-const clone = Object.assign({}, add);
+const clone = Object.assign({}, add); //! Копия объекта
 
-clone.d = 20;
-
+clone.d = 20; //! Замена свойтва объекта d = 20
 // console.log(add);
 // console.log(clone);
 
-const oldArray = ['a', 'b', 'c']
+//! Клонирование (Копия) Массива ||||>>>> Третий метод клонирования
+
+const oldArray = ['a', 'b', 'c'];
 const newArray = oldArray.slice();
 
 newArray[1] = 'adsfasdfasd';
 console.log(oldArray);
 console.log(newArray);
 
-const video = ['youtube', 'vimeo', 'reatube'],
-      blogs = ['wordpress', 'livehournal', 'blogger'],
-      internet = [...video, ...blogs, 'vk', 'facebook'];
+//! ||| Оператор разворота "spread" ES8 |||||>>>>> Четвертый способ клонирования
 
-console.log(internet);
+const video = ['youtube', 'vimeo', 'reatube'],
+      blogs = ['wordpress', 'livejournal', 'blogger'],
+      internet = [...video, ...blogs, 'vk', 'facebook']; //! массив всех свойств video, blogs
+
+// console.log(internet);
 
 function log(a, b, c) {
     console.log(a);
@@ -81,10 +86,9 @@ function log(a, b, c) {
 }
 
 const num = [2, 5 ,7];
-
 log(...num);
 
-//! Четвертый способ создания поверхностных копий объекта
+//! Четвертый способ создания поверхностных копий объекта 
 
 const array = ['a', 'b'];
 
