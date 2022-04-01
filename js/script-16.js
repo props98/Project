@@ -91,14 +91,16 @@ log(...num);
 //! Четвертый способ создания поверхностных копий объекта 
 
 const array = ['a', 'b'];
-
 const newAarray = [...array];
-
 const q = {
     one: 1,
     two: 2
 };
-
 const newObj = {...q};
 
+newAarray[0] = 'adsfasdf';
+newObj.three = 7;
+
+console.log(newAarray);
+console.log(q);
 console.log(newObj);
