@@ -5,8 +5,8 @@ let a = 5,
     b = a;
 
 b = b + 5;
-console.log(b);
-console.log(a);
+console.log(b); // 10
+console.log(a); // 5
 
 //! Передача по ссылке 
 const obj = {
@@ -44,7 +44,7 @@ const numbers = {
 const newNumbers = copy(numbers); //! Создание копии объета через функцию
 
 newNumbers.a = 10; //! Внесли изменения в скопированное свойство объекта
-// newNumbers.c.x = 10; //! Измения в копии не сработает
+// newNumbers.c.x = 10; //! Измения в копии второго уровня вложенности !!!не сработает
 
 console.log(numbers);
 console.log(newNumbers);
