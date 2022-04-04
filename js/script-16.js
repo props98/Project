@@ -13,7 +13,7 @@ const obj = {
     a: 5,
     b: 1
 };
-// const copy = obj; //! obj передает ссылку на объект ! НЕ СОЗДАЕТ КОПИЮ
+// const copy = obj; //! obj, массивы, функции -  передает ссылку на объект ! НЕ СОЗДАЕТ КОПИЮ
 
 // copy.a = 10; 
 // console.log(copy);
@@ -71,7 +71,7 @@ newArray[1] = 'adsfasdfasd';
 console.log(oldArray);
 console.log(newArray);
 
-//! ||| Оператор разворота "spread" ES8 |||||>>>>> Четвертый способ клонирования
+//! ||| Оператор развертка массива(unpacking) "spread" ES8 |||||>>>>> Четвертый способ клонирования
 
 const video = ['youtube', 'vimeo', 'reatube'],
       blogs = ['wordpress', 'livejournal', 'blogger'],
@@ -100,7 +100,9 @@ const newObj = {...q};
 
 newAarray[0] = 'adsfasdf';
 newObj.three = 7;
+newObj.one = 100;
 
+console.log(array);
 console.log(newAarray);
 console.log(q);
 console.log(newObj);
