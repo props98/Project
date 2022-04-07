@@ -63,12 +63,24 @@ let personalMovieDB = {
             console.log(personalMovieDB);
         };
     },
-    riteYourGenres: function () {
+    toggleVisibleMyDB: function () {
+        if (personalMovieDB.private) {
+            personalMovieDB.private = false;
+        } else {
+            personalMovieDB.private = true;
+        }
+    },
+    writeYourGenres: function () {
         for (let i = 1; i <= 3; i++) {
             // personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`, '');
             let genres = prompt(`Ваш любимый жанр под номером ${i}`, '');
-            personalMovieDB.genres.push(genres.toLocaleLowerCase()); //! Методом .push()
+            // personalMovieDB.genres.push(genres.toLocaleLowerCase()); //! Методом .push()
+            if (genres === '' || genres === null) {
+                genres = prompt(`Вы не ввели жанр фильма ${i}`, '');
+                i--;
+            }
         };
+        console.log(personalMovieDB.genres);
+        console.log(`Любимый жанр ${i} - это ${personalMovieDB.genres[i]}`);
     }
 };
-
