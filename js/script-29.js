@@ -1,8 +1,10 @@
 "use strict";
 
 const box = document.getElementById('box'),
-      btns = document.getElementsByTagName('button'),
+    //   btns = document.getElementsByTagName('button'),
+      btns = document.querySelectorAll('button'),
       circles = document.getElementsByClassName('circle'),
+    //   circles = document.querySelectorAll('.circle'),
       wrapper = document.querySelector('.wrapper'),
       hearts = wrapper.querySelectorAll('.heart'),
       oneHeart = wrapper.querySelector('.heart');
@@ -26,16 +28,19 @@ circles[0].style.backgroundColor = 'yellow';
 //     hearts[i].style.borderRadius = '100px';
 // }
 
+//! Если используеться селектор querySelrctorAll
 hearts.forEach(item => {
     item.style.cssText = 'background-color: lightgrey';
 });
 
-// const div = document.createElement('div');
-const text = document.createTextNode('Созданный текст через JS');
+const div = document.createElement('div');
+// const text = document.createTextNode('Созданный текст через JS');
 
-// div.classList.add('black');
+div.classList.add('black');
 
-// document.body.append(div); //? Элемент добавлен перед закрывающим тегом body
+document.body.append(div); //? Элемент добавлен перед закрывающим тегом body
+// div.append(text); 
+
 
 // wrapper.append(div); //? Элемент вставлен в блок wrapper в конец
 // wrapper.appendChild(div); //! Устаревший способ добавление элемента
@@ -47,13 +52,13 @@ const text = document.createTextNode('Созданный текст через J
 
 // wrapper.insertBefore(div, hearts[1]); //! Устаревший способ добавление элемента
 
-// circles[0].remove(); //? Удаление элемента
+// hearts[0].remove(); //? Удаление элемента
 // wrapper.removeChild(hearts[1]); //! Устаревший способ удаления элемента
 
-// hearts[0].replaceWith(circles[0]); //? замена выбранного элемента
-// wrapper.replaceChild(circles[0], hearts[0]); //! Устаревший способ замены элемента
+// circles[1].replaceWith(btns[1]); //? замена выбранного элемента
+// wrapper.replaceChild(circles[0], hearts[1]); //! Устаревший способ замены элемента
 
-// div.innerHTML = '<h1>Hello world!</h1>';
+// div.innerHTML = '<p>Hello world!</p>';
 // div.textContent = 'Hello!';
 
 // div.insertAdjacentHTML('afterBegin', '<h2>beforeBegin</h2>'); //? вставляется в начало/перед элементом h1
@@ -68,15 +73,28 @@ const text = document.createTextNode('Созданный текст через J
 
 box.style.cssText = 'border-bottom: 5px solid green; margin-bottom: 30px';
 
-let longText = btns[2].textContent;
-let sliced = longText.slice(0, 4);
+const paragraph = document.createElement('p');
+paragraph.textContent = 'Длинная строка';
+const longText = paragraph.textContent;
+console.log(longText);
 
+
+let sliced = longText.slice(0, 5);
 
 if (longText.length > sliced.length) {
     sliced += '...';
-    console.log(sliced);
-    btns[2].textContent = sliced;
 }
+
+for (let i = 0; i < btns.length; i++) {
+    btns[i].textContent = `${i + 1} ${sliced}`;
+    console.log(btns[i]);
+};
+
+//! forEach  в данном примере не работает
+// btns.forEach(item => {
+//     btns[item].textContent = `${item + 1} ${sliced}`;
+//     console.log(btns[item]);
+// });
 
 
 for (let i = 0; i < btns.length; i++) {
@@ -90,4 +108,5 @@ for (let i = 0; i < circles.length; i++) {
     wrapperCircle.insertAdjacentHTML('afterbegin', circles);
 }
 
-circles[2].style.marginBottom = '30px';
+// circles[2].style.marginBottom = '30px';
+
