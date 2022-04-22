@@ -26,9 +26,9 @@ const movieDB = {
 
 const promo = document.querySelector('.promo__adv'),
       promoGenre = document.querySelector('.promo__genre'),
-      promoBg = document.querySelector('.promo-bg');
+      promoBg = document.querySelector('.promo__bg');
 
 promo.remove();
 promoGenre.textContent = 'Драма';
-promoBg.style.cssText = 'background: red';
+promoBg.style.cssText = `background-image: url("img/bg.jpg"); background-size: cover`;
 
