@@ -27,11 +27,18 @@ const movieDB = {
 };
 
 //! Получение элементов со траницы
-const adv = document.querySelectorAll('.promo__adv img');
+const adv = document.querySelectorAll('.promo__adv img'),
+      promoBg = document.querySelector('.promo__bg'),
+      genre = promoBg.querySelector('.promo__genre');
 
 
 //! Удаление рекламных блоков со траницы
-
 adv.forEach(function (item) {
     item.remove();
 });
+
+//! Изменение жанра фильма
+genre.textContent = 'Драма';
+
+//! Изменение заднего фона
+promoBg.style.cssText = `background-image: url("img/bg.jpg")`;
