@@ -26,4 +26,12 @@ const movieDB = {
     ]
 };
 
+//! Получение элементов со траницы
+const adv = document.querySelectorAll('.promo__adv img');
 
+
+//! Удаление рекламных блоков со траницы
+
+adv.forEach(function (item) {
+    item.remove();
+});
