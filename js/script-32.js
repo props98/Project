@@ -14,6 +14,7 @@
 
 
 //? Получение родителя от ребенка
+
 // console.log(document.querySelector('#current').parentNode);
 // console.log(document.querySelector('.class').parentNode);
 // console.log(document.querySelector('#current').parentNode.parentNode); //! Родитель родителя от ребенка
@@ -35,11 +36,11 @@
 // console.log(document.querySelector('[data-yourName="3"]').previousElementSibling);
 
 
+
 //!  Переберающая функция NODE-list (for of)
 for (let node of document.body.childNodes) {
     if (node.nodeName == '#text') {
         continue;
     }
-
     console.log(node);
 }
