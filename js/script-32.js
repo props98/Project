@@ -18,26 +18,28 @@
 // console.log(document.querySelector('.class').parentNode);
 // console.log(document.querySelector('#current').parentNode.parentNode); //! Родитель родителя от ребенка
 
-//! Получение элемента
+//! Получение элемента РОДИТЕЛЯ
 // console.log(document.querySelector('#current').parentElement);
 
 
 
 //? Получение через дата атрибута
-//! Получение узла
+//! Получение узла - Нода
 // console.log(document.querySelector('[data-current="3"]').nextSibling);
 // console.log(document.querySelector('[data-current="3"]').previousSibling);
+// console.log(document.querySelector('[data-yourName="3"]').previousSibling);
 
-//! Получение элемента
+//! Получение элемента СЛЕДУЮЩЕГО ИЛИ ПРЕДИДУЩЕГО ЭЛЕМЕНТА
 // console.log(document.querySelector('[data-current="3"]').nextElementSibling);
 // console.log(document.querySelector('[data-current="3"]').previousElementSibling);
+// console.log(document.querySelector('[data-yourName="3"]').previousElementSibling);
 
 
-//!  Переберающая функция
-// for (let node of document.body.childNodes) {
-//     if (node.nodeName == '#text') {
-//         continue;
-//     }
+//!  Переберающая функция NODE-list (for of)
+for (let node of document.body.childNodes) {
+    if (node.nodeName == '#text') {
+        continue;
+    }
 
-//     console.log(node);
-// }
+    console.log(node);
+}
