@@ -20,8 +20,38 @@ const movieDB = {
         "Лига справедливости",
         "Ла-ла лэнд",
         "Одержимость",
-        "Скотт Пилигрим против..."
+        "Скотт Пилигрим против...",
+        "Апполон",
+        "Ямакаси"
     ]
 };
 
+const adv = document.querySelectorAll('.promo__adv img'),
+      promoBG = document.querySelector('.promo__bg'),
+      genre = promoBG.querySelector('.promo__genre'),
+      movieList = document.querySelector('.promo__interactive-list');
 
+// Убирает рекламноые блоки со страницы
+adv.forEach(item => {
+    item.remove();
+});
+
+// Меняем название жанра
+genre.textContent = 'драма';
+
+// Меняем задний фон баннера
+promoBG.style.cssText = 'background: url("img/bg.jpg")';
+
+// Очищаем список с фильмами
+movieList.innerHTML = '';
+
+// Сортируем спсисок из объекта movieDB
+movieDB.movies.sort();
+
+movieDB.movies.forEach((film, i) => {
+    movieList.innerHTML += `
+        <li class="promo__interactive-item"> ${i + 1}. ${film}
+            <div class="delete"></div>
+        </li>
+    `;
+});
