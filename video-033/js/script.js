@@ -55,4 +55,3 @@ movieDB.movies.forEach((film, i) => {
         </li>
     `;
 });
-
