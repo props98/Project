@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             creatMovieList(movieDB.movies, movieList);
         }
 
-        event.target.reset();
+        event.target.reset(); 
 
     });
     
