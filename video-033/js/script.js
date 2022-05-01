@@ -103,9 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         let newFilm = addInput.value.toLowerCase();
-        // console.log(newFilm);
         const favorite = checkbox.checked;
-        // console.log(favorite);
 
         if (newFilm) {
 
@@ -118,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             movieDB.movies.push(newFilm);
-            // console.log(newFilm);
 
             // movieDB.movies.sort();//! Заменили на функцию sortArr()
             sortArr(movieDB.movies);
@@ -127,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         event.target.reset(); 
-
     });
     
     //! Функция удаляет рекламу на странице
