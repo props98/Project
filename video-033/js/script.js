@@ -81,26 +81,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (like) {
                 console.log(newInput + ': Добавляем любимый фильм');
             }
-
             movieDB.movies.push(newInput);
+            sortList(movieDB.movies);
+            createMovieList(movieDB.movies, movieList);
         }
 
-        addForm.reset();
-        newList();
         console.log(movieDB.movies);
+
+        e.target.reset();
     })
 
     
     
     //! Удаление исходного списка со траницы
-    const removeAdv = () => {
+    const deleteAdv = (arr) => {
         adv.forEach(item => {
             item.remove();
         });
     }
 
     //! Изменения в главном баннере
-    const changes = () => {
+    const makeChanges = () => {
         promoBG.style.cssText = 'background-image: url(img/bg.jpg)';
         genre.textContent = 'драма';
     }
@@ -108,29 +109,37 @@ document.addEventListener('DOMContentLoaded', () => {
     //! Делает первый символ заглавным
     function firstLetterToUppercase(string) {
        return string.charAt(0).toUpperCase() + string.slice(1);
-       
     }
 
     //! Сортировка полученного списка
-    function sortList(list) {
-        list.sort();
+    function sortList(arr) {
+        arr.sort();
     }
     
-    //! Добавление нового списка на страницу из базы данных
-    function newList() {
-        movieList.innerHTML = '';
-        sortList(movieDB.movies);
+    //! Добавление нового списка на страницу на основе базы данных
+    function createMovieList(films, parent) {
+        parent.innerHTML = '';
         
-        movieDB.movies.forEach((film, i) => {
-            movieList.innerHTML += `
+        films.forEach((film, i) => {
+            parent.innerHTML += `
                 <li class="promo__interactive-item">${i + 1}. ${film}
                     <div class="delete"></div>
                 </li>
             `
         });
+
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();
+                movieDB.movies.splice(i, 1);
+
+                createMovieList(movieDB.movies, movieList);
+            });
+        });
     }
 
-    newList();
-    removeAdv();
-    changes();
+    deleteAdv(adv);
+    createMovieList(movieDB.movies, movieList);
+    sortList(movieDB.movies);
+    makeChanges();
 });
