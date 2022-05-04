@@ -14,48 +14,6 @@
 
 'use strict';
 
-// const movieDB = {
-//     movies: [
-//         "Логан",
-//         "Лига справедливости",
-//         "Ла-ла лэнд",
-//         "Одержимость",
-//         "Скотт Пилигрим против...",
-//         "Апполон",
-//         "Ямакаси"
-//     ]
-// };
-
-// const adv = document.querySelectorAll('.promo__adv img'),
-//       promoBG = document.querySelector('.promo__bg'),
-//       genre = promoBG.querySelector('.promo__genre'),
-//       movieList = document.querySelector('.promo__interactive-list');
-
-// // Убирает рекламноые блоки со страницы
-// adv.forEach(item => {
-//     item.remove();
-// });
-
-// // Меняем название жанра
-// genre.textContent = 'драма';
-
-// // Меняем задний фон баннера
-// promoBG.style.cssText = 'background: url("img/bg.jpg")';
-
-// // Очищаем список с фильмами
-// movieList.innerHTML = '';
-
-// // Сортируем спсисок из объекта movieDB
-// movieDB.movies.sort();
-
-// movieDB.movies.forEach((film, i) => {
-//     movieList.innerHTML += `
-//         <li class="promo__interactive-item"> ${i + 1}. ${film}
-//             <div class="delete"></div>
-//         </li>
-//     `;
-// });
-
 //! Вторая часть практики Урок 33
 
 /*
@@ -78,6 +36,7 @@ P.S. Здесь есть несколько вариантов решения з
 //! Событие загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
 
+    //! DataBase
     const movieDB = {
         movies: [
             "Логан",
@@ -90,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
     
+    //! Получение элементов со странцы сайта
     const adv = document.querySelectorAll('.promo__adv img'),
           promoBG = document.querySelector('.promo__bg'),
           genre = promoBG.querySelector('.promo__genre'),
@@ -98,23 +58,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const addForm = document.querySelector('form.add'),
           addInput = addForm.querySelector('.adding__input'),
           checkbox = addForm.querySelector('[type="checkbox"]');
-    
 
+    addForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let newInput = addInput.value.toLowerCase();
+        const like = checkbox.checked;
+
+        if (newInput) {
+
+            if(newInput.length > 21) {
+                newInput = newInput.substring(0, 21) + '...';
+            } 
+
+            if (like) {
+                console.log(newInput + ': Добавляем любимый фильм');
+            }
+
+            movieDB.movies.push(newInput);
+        }
+
+        console.log(newInput);
+        console.log( movieDB.movies);
+
+        sortList(movieDB.movies);
+        newList();
+        
+    })
+    
+    //! Удаление исходного списка со траницы
     const removeAdv = () => {
         adv.forEach(item => {
             item.remove();
         });
     }
 
+    //! Изменения в главном баннере
     const changes = () => {
         promoBG.style.cssText = 'background-image: url(img/bg.jpg)';
         genre.textContent = 'драма';
     }
 
+    //! Сортировка полученного списка
     const sortList = (list) => {
         list.sort();
     }
     
+    //! Добавление нового списка на страницу из базы данных
     function newList() {
         movieList.innerHTML = '';
 
@@ -127,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    sortList(movieDB.movies)
+    sortList(movieDB.movies);
     newList();
     removeAdv();
     changes();
