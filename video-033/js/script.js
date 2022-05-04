@@ -98,85 +98,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const addForm = document.querySelector('form.add'),
           addInput = addForm.querySelector('.adding__input'),
           checkbox = addForm.querySelector('[type="checkbox"]');
-
-    addForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        let newFilm = addInput.value.toLowerCase();
-        const favorite = checkbox.checked;
-
-        if (newFilm) {
-
-            if (newFilm.length > 10) {
-                newFilm = `${newFilm.substring(0, 10)}...`;
-            }
-
-            if (favorite) {
-                console.log('Добавляем любимый фильм');
-            }
-
-            movieDB.movies.push(newFilm);
-
-            // movieDB.movies.sort();//! Заменили на функцию sortArr()
-            sortArr(movieDB.movies);
-
-            creatMovieList(movieDB.movies, movieList);
-        }
-
-        event.target.reset(); 
-    });
     
-    //! Функция удаляет рекламу на странице
-    const deleteAdv = (arr) => {
-        // Убирает рекламноые блоки со страницы
-        arr.forEach(item => {
+
+    const removeAdv = () => {
+        adv.forEach(item => {
             item.remove();
         });
     }
-    
-    //! Функция делае изменения на странице
-    const makeChanges = () => {
-        // Меняем название жанра
+
+    const changes = () => {
+        promoBG.style.cssText = 'background-image: url(img/bg.jpg)';
         genre.textContent = 'драма';
-        // Меняем задний фон баннера
-        promoBG.style.cssText = 'background: url("img/bg.jpg")';
+    }
+
+    const sortList = (list) => {
+        list.sort();
     }
     
-    //! Функция сортировки массива
-    const sortArr = (arr) => {
-        // Сортируем спсисок из объекта movieDB
-        movieDB.movies.sort();
-    }
+    function newList() {
+        movieList.innerHTML = '';
 
-    //! Функция создания элементов на странице
-    function creatMovieList(films, parent) {
-        // Очищаем список с фильмами
-        parent.innerHTML = '';
-        //Сортировка фильмов по алфовиту
-        sortArr(films);
-
-        // Добавление элементов в список 
-        films.forEach((film, i) => {
-            parent.innerHTML += `
-                <li class="promo__interactive-item"> ${i + 1}. ${film}
+        movieDB.movies.forEach((film, i) => {
+            movieList.innerHTML += `
+                <li class="promo__interactive-item">${i + 1}. ${film}
                     <div class="delete"></div>
                 </li>
-            `;
+            `
         });
-
-        document.querySelectorAll('.delete').forEach((btn, i) => {
-            btn.addEventListener('click', () => {
-                btn.parentElement.remove();
-                movieDB.movies.splice(i, 1);
-
-                creatMovieList(films, parent); //! Рекурсия функции - обновление нумерации списка
-            });
-        });
-
     }
-
-    deleteAdv(adv);
-    makeChanges();
-    creatMovieList(movieDB.movies, movieList);
-
+    
+    sortList(movieDB.movies)
+    newList();
+    removeAdv();
+    changes();
 });
