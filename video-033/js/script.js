@@ -59,17 +59,24 @@ document.addEventListener('DOMContentLoaded', () => {
           addInput = addForm.querySelector('.adding__input'),
           checkbox = addForm.querySelector('[type="checkbox"]');
 
+
+    //! Получение нового фильма через input
+    //! Добавление нового фильма в dataBase
+    //! Проверка названия фильма на колическто символов
+    //! Проверка чекбокса на добавление фильма в категорию любимые
+    //! Добавление фильма в список по сортировке
     addForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        let newInput = addInput.value.toLowerCase();
+        // let newInput = addInput.value;
+        let newInput = firstLetterToUppercase(addInput.value);
         const like = checkbox.checked;
-
+        
         if (newInput) {
-
-            if(newInput.length > 21) {
-                newInput = newInput.substring(0, 21) + '...';
-            } 
+           
+            if (newInput.length > 8) {
+                newInput = newInput.substring(0, 8) + '...';
+            }
 
             if (like) {
                 console.log(newInput + ': Добавляем любимый фильм');
@@ -78,13 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
             movieDB.movies.push(newInput);
         }
 
-        console.log(newInput);
-        console.log( movieDB.movies);
-
-        sortList(movieDB.movies);
+        addForm.reset();
         newList();
-        
+        console.log(movieDB.movies);
     })
+
+    
     
     //! Удаление исходного списка со траницы
     const removeAdv = () => {
@@ -99,15 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
         genre.textContent = 'драма';
     }
 
+    //! Делает первый символ заглавным
+    function firstLetterToUppercase(string) {
+       return string.charAt(0).toUpperCase() + string.slice(1);
+       
+    }
+
     //! Сортировка полученного списка
-    const sortList = (list) => {
+    function sortList(list) {
         list.sort();
     }
     
     //! Добавление нового списка на страницу из базы данных
     function newList() {
         movieList.innerHTML = '';
-
+        sortList(movieDB.movies);
+        
         movieDB.movies.forEach((film, i) => {
             movieList.innerHTML += `
                 <li class="promo__interactive-item">${i + 1}. ${film}
@@ -116,8 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `
         });
     }
-    
-    sortList(movieDB.movies);
+
     newList();
     removeAdv();
     changes();
