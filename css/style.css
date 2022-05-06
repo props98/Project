@@ -1,4 +1,4 @@
-body {
+/* body {
   font-style: sans-serif;
 
   display: flex;
@@ -6,4 +6,25 @@ body {
   justify-content: center;
 
   height: 40vh;
+} */
+
+
+.btn-block {
+  background: grey;
+  padding: 50px 30px;
+}
+
+.blue {
+  background: blue;
+}
+
+.red {
+  background: red;
+}
+
+button {
+  width: 70px;
+  height: 30px;
+  background: yellow;
+  border: none;
 }
