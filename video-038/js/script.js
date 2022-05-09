@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //! находим рабителя всех вкладок
     const tabsParent = document.querySelector('.tabheader__items');
 
-
     //! Функция которая прячет весь не нужный контент
     function hideTabsContent() {
         tabsContent.forEach(item => {
