@@ -4,8 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  height: 40vh;
+  flex-direction: column;
 } */
 
 
@@ -22,9 +21,21 @@
   background: red;
 }
 
+.box {
+  box-sizing: border-box;
+  width: 400px;
+  height: 250px;
+  overflow: scroll;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px;
+}
+
 button {
-  width: 70px;
+  width: 100px;
   height: 30px;
-  background: yellow;
+  display: block;
   border: none;
+  margin: 0 auto;
+  margin-top: 25px;
 }
