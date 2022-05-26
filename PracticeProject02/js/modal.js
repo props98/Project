@@ -47,4 +47,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const modalTimerId = setTimeout();
+
 });
