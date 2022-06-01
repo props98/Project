@@ -14,13 +14,11 @@ function User(name, id) {
         console.log(`Hello ${this.name}`);
     };
 
-    // exit() {
-    //     console.log(`User ${this.name} left`);
-    // }
 }
 
 
 //*Свойство prototype с помощью него можно добовлять методы в конструктор
+//! Добавлен метод exit
 User.prototype.exit = function() {
     console.log(`Пользователь ${this.name} ушел!`);
 }
@@ -28,13 +26,11 @@ User.prototype.exit = function() {
 const ivan = new User('Ivan', 28);
 const alex = new User('Alex', 30);
 
+console.log(ivan.id);
+
 // console.log(ivan);
 // console.log(alex);
-
-// ivan.exit();
 
 ivan.hello();
 alex.hello();
 ivan.exit();
-
-console.log(ivan.id);
