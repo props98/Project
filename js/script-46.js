@@ -30,13 +30,14 @@
 //     a: 20,
 //     b: 15,
 //     sum: function() {
-//         //  console.log(this);
+//         //? Вызов этой функции выдаст сам объект
+//          console.log(this);
 
-//         //? Простой вызов фнкции, контекст вызова в этой функции выдаст undefined
-//         function shout() {
-//             console.log(this);
-//         }
-//         shout();
+//         // //? Простой вызов фнкции, контекст вызова в этой функции выдаст undefined
+//         // function shout() {
+//         //     console.log(this);
+//         // }
+//         // shout();
 //     }
 // }
 // obj.sum();
@@ -108,16 +109,16 @@ btn.addEventListener('click', (e) => {
 //? Функция в объекте ссылается на сам объект
 //? стрелочная функция ссылается на родителя
 //? стрелочные функции не имеют своего контекста вызова "this"
-const obj = {
-    num: 5,
-    text: 'Hello',
-    sayNumber: function() {
-        //? Стрелочная функция ссылаеться на родителя
-        const say = () => {
-            console.log(this.text);
-        }
-        say();
-    }
+// const obj = {
+//     num: 5,
+//     text: 'Hello',
+//     sayNumber: function() {
+//         //? Стрелочная функция ссылаеться на родителя
+//         const say = () => {
+//             console.log(this.text);
+//         }
+//         say();
+//     }
 
     // sayNumber: function() {
     //     console.log(this);
@@ -128,20 +129,20 @@ const obj = {
 
     //     sayText();
     // }
-}
+// }
 
-obj.sayNumber();
+// obj.sayNumber();
 
 
-const double1 = (a) => {
-    return a * 2;
-};
+// const double1 = (a) => {
+//     return a * 2;
+// };
 
-//? Короткие виды записи
-//! return не нужен
-// const double2 = (a) => a * 2;
+// //? Короткие виды записи
+// //! return не нужен
+// // const double2 = (a) => a * 2;
 
-//! Если один аргумент скобки можно не использовать
-const double3 = a => a * 2;
+// //! Если один аргумент скобки можно не использовать
+// const double3 = a => a * 2;
 
-console.log(double1(4));
+// console.log(double1(4));
