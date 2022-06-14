@@ -13,9 +13,6 @@ function calcOrDouble(number, basis = 2) {
     console.log(number * basis);
 }
 
-<<<<<<< HEAD
-calcOrDouble(8);
-=======
 calcOrDouble(3);
 
 // Остаточные параметры и оператор расширения
@@ -68,4 +65,3 @@ console.log(merge);
 let str = 'Hello';
 console.log([...str][1]);
 console.log(Array.from(str)[2]);
->>>>>>> videoLesson-049
