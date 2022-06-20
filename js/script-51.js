@@ -25,7 +25,7 @@ const persone = {
 //* Можно использовать во фронттенде
 //console.log(JSON.parse(JSON.stringify(persone)));
 
-//! Глубокоу клонирование объекта не зависящие друг от друга
+//!!!!!!!!! Глубокоу клонирование объекта не зависящие друг от друга
 let clone = JSON.parse(JSON.stringify(persone));
 clone.parents.mom = 'Ann';
 clone.parents.dad = 'Pete';
