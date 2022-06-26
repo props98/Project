@@ -2,5 +2,5 @@
 
 //* Циклы
 
-const num = 10;
+const num = 50;
 
