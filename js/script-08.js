@@ -2,5 +2,10 @@
 
 //* Циклы
 
-const num = 10;
+let num = 50;
 
+// Первый цикл 
+while (num <= 55) {
+    console.log(num);
+    num++;
+}
