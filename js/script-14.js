@@ -1,6 +1,6 @@
-"use  strict";
+"use strict";
 
-const obj = new Object(); //! старая запись создание объекта
+// const obj = new Object(); //! Старая запись создания объекта
 
 const options = {
     name: 'test',
@@ -9,91 +9,61 @@ const options = {
     colors: {
         border: 'black',
         bg: 'red'
-    },
-    makeTest: function() {
-        console.log('Metod TEST!');
     }
-};
+}
+console.log(options.colors.bg);
 
-console.log(options['colors']['bg']);
-
-// console.log(options);
-// delete options.name //! Удаление свойства обектов
+// delete options.name; //! Удаляет свойство объекта
 // console.log(options);
 
-const {border, bg} = options.colors; //! Деструктуризация объекта
-console.log(bg);
-
-// console.log(options.colors.bg);
-
-
-
-let counter = 0; //! Создание счетчика
-
-//! Создание перебора объекта, в объекте при помощи условия
-for (let key in options) {  //! Перебор объектов – for in
-
-    if (typeof(options[key]) === 'object') {  //! <<<< Перебор объекта в объекте (typeof проверка типа данных)
-        for (let i in options[key])
-        console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
-        counter++;
+//! Перебор свойств в объекте при помощи «for ... in»
+//! Переменная для счетчика
+let counter = 0;
+for (let key in options) {
+    //! Проверка с перебором вложеных объектов
+    if (typeof(options[key]) === 'object') {
+        for (let i in options[key]) {
+            console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+            //! Подсчет количества свойств запись в «counter»
+            counter++;
+        }
     } else {
         console.log(`Свойство ${key} имеет значение ${options[key]}`);
+        //! Подсчет количества свойств запись в «counter»
         counter++;
     }
 }
+// console.log(counter);
 
-console.log(counter);
-options.makeTest();
+////////////! Все свойства и методы ОБЪЕКТА на сайте MDN
 
-//! Функции и методы внутри объекта
-//! Документация MDN – https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object
+console.log(Object.keys(options).length);
 
-console.log(Object.keys(options).length); //* Посчитать длину объекта
-
-let animal = {
-    name: 'Monika',
-    color: 'red',
-    hobby: 'play',
-    eat: 5,
-    makeMetod: function() {  //! создание метода
-        console.log('My first Metod in JS!');
-    }
-}
-
-// console.log(animal.length);
-// console.log(Object.keys(animal)); //! Получение массива объекта
-// console.log(Object.keys(animal).length); //! Получение количество элементов объекта
-animal.makeMetod(); //! Вызывается с круглыми скобками
-
-for (let key in animal) {
-    console.log(`Key ${key}: ${animal[key]}`);
-}
-
-
-//! Деструктуризация объекта
-const deskObj = {
+const man = {
     name: 'Mike',
-    age: 25,
-    obg1: {
-        nest1: 1,
-        red: {
-            nest2: 2,
-            blue: {
-                nest3: 3,
-                yellow: {
-                    nest4: 4,
-                    brown: 'End'
-                }
-            }
-        }
+    surname: 'Const',
+    age: 30,
+    pets: {
+        dog: 'Rex',
+        cat: 'Cat'
+    },
+    city: 'Denver',
+    makeTest: function() {
+        console.log('TEST');
     }
-};
+}
 
+// console.log(man);
+// console.log(Object.keys(man));
+// console.log(Object.keys(man).length);
 
-const {nest1, red} = deskObj.obg1;
-const {nest2, blue} = deskObj.obg1.red;
-const {nest3, yellow} = deskObj.obg1.red.blue;
+// man.makeTest();
 
-// console.log(deskObj);
-console.log(blue);
+// for (let key in man) {
+//     console.log(`key: ${man[key]}`);
+// }
+
+//////////////! Деструктуризация объекта
+
+const {dog, cat} = man.pets;
+console.log(cat);
