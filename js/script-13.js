@@ -16,3 +16,16 @@ function second() {
 
 first();
 second();
+
+function learnJS(lang, callback) {
+    console.log('I learn ' + lang);
+    callback();
+}
+
+function done() {
+    console.log('I passed this lesson');
+}
+
+//Передаем функцию не вызывая ее, функция вызывается в «learnJS»
+learnJS('JavaScript', done);
+
