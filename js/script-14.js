@@ -1,3 +1,3 @@
 "use  strict";
 
-console.log(HEllo);
+const obj = new Object(); //! Старая запись создания объекта
