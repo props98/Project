@@ -1,40 +1,31 @@
 "use strict";
 
-//! Callback Функции
+//* Callback Функции
 
+//Функция с задержкой, имитация работы функции с сервером
 function first() {
-    //Do something
-    setTimeout(function() { //! Залержка функции на пол секунды
+    // do something
+    setTimeout(function () {
         console.log(1);
-    }, 1000);
+    }, 500);
 }
 
 function second() {
-    //Do something
     console.log(2);
 }
 
 first();
 second();
 
-
-function learnJS(lang, callback) {  //! Callback функция / Первый аргумент текст (любой аргумент), второй важный аргумент CALLBACK (другая функция)
-    console.log(`I learn: ${lang}`);
+function learnJS(lang, callback) {
+    console.log('I learn ' + lang);
     callback();
 }
 
-//! Ананимная функция / после вызова ищезнет
-learnJS('Java Script', function() {
-    console.log('I passed this lesson!');
-});
-
-//! Передача функции для дальнейшего её использования
 function done() {
-    console.log('Lesson is passed!');
+    console.log('I passed this lesson');
 }
 
-function sayHello() {
-    console.log('Hello!');
-}
+//Передаем функцию не вызывая ее, функция вызывается в «learnJS»
+learnJS('JavaScript', done);
 
-learnJS('Java Script', sayHello); //! Передовать без круглых скобок, чтобы вызываласб в опр. вермя.
