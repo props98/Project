@@ -11,6 +11,7 @@
 .btn-block {
   background: grey;
   padding: 50px 30px;
+  display: flex;
 }
 
 .blue {
