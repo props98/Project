@@ -1,43 +1,44 @@
+"use strict";
+
 const btns = document.querySelectorAll('button'),
       overlay = document.querySelector('.overlay');
 
+
+//! Не использовать такой вариант записи обработчика т.к. при повторном
+//! вызове будет выводиться последнее сообщение
 // btn.onclick = function() {
-//     alert('click!')
+//    alert('Click');
 // };
 
-// btn.onclick = function() {
-//     alert('click 2!')
-// };
+// btn.addEventListener('click', () => {
+//     alert('Click');
+// });
 
 let i = 0;
 
-const deleteElement = (e) => {
-    console.log(e.target);
-    console.log(e.type);
-
+const deleteElement = (event) => {
+    console.log(event.target);
+    console.log(event.type);
     // i++;
     // if (i == 1) {
     //     btn.removeEventListener('click', deleteElement);
     // }
-};
-
-// btn.addEventListener('click', (deleteElement) => {
-//     // console.log(even.target);
-//     even.target.remove();
-//     // console.log('Hover');
-// });
-
-btns.forEach(btn => {
-    btn.addEventListener('click', deleteElement, {once: true});
-});
+}; 
 
 // btn.addEventListener('click', deleteElement);
 // overlay.addEventListener('click', deleteElement);
 
+//* Опции события третий аргумент (type, listener, {option: boleen})
+btns.forEach(btn => {
+    btn.addEventListener('click', deleteElement, {once: true});
+});
+
 const link = document.querySelector('a');
 
-link.addEventListener('click', (event) => {
-    event.preventDefault();
+link.addEventListener('click', function(evt) {
+    evt.preventDefault();
 
-    console.log(event.target);
+    console.log(evt.target);
 });
+
+
