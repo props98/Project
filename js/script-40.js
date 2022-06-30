@@ -1,60 +1,36 @@
 "use strict"
 
-//! DATE  
+//* DATE
 
-//* Месяцы считаються с нуля
-
-//!Передача даты в ввиде строки
-const now1 = new Date('2022-05-15');
-//? new Date.parse('2022-05-15');
-
-//! Передача прямых аргументов
-const now2 = new Date(2020, 5, 15);
-
-//! Исходная точка отсчета 1970-01-01T00:00:00.000Z
-//* Чтобы получить ранюю дату нужно использвать отрицытельные значения -777
-const now3 = new Date(0);
-
-//!Вывод текущей системной даты
+//! Начало отсчета даты - «1970-01-01»
+// const now = new Date(0);
 // console.log(now);
 
-//! Основные Методы по отдельным компонентам
-// console.log(now.getFullYear()); //? получаем год всегда четырех значный
-// console.log(now.getMonth()); //? получаем месяц - счет с нуля 0 - 11
-// console.log(now.getDate()); //? дни от 1 до 31
-// console.log(now.getDay()); //? Начало с воскресенья = 0
+//? timestamp - любая дата это секунды
 
-// console.log(now.getHours());
-// console.log(now.getMinutes();
-// console.log(now.getSeconds();
+//* Методы
+const now = new Date();
+// console.log(now.getFullYear()); // Получит год / всегда четырез значный
+// console.log(now.getMonth()); // Получит месяц
+// console.log(now.getDate()); // Получит день
+// console.log(now.getDay()); // Получит нумерация дня, начало 0 - воскресенье
 
-//! Местное время
-// console.log(now.getHours());
-//! Аналог UTC - 
-// console.log(now.getUTCHours());]
+// console.log(now.getUTCHours());
 
-//! Метод - разница между часовым поясом и UTC
-// console.log(now.getTimezoneOffset());
+// console.log(now.getTime()); // Возращает количество прошедших секунд с 1970 года
+// console.log(now.getTimezoneOffset()); // Разница между часовым поясом и поясои UTC
 
-//! Колчиество милисекунд которые прошли с начальной точки отсчета
-// console.log(now.getTime());
 
-// let time = now.getTime();
-// console.log(Date(time));
+//* Методы и Сеттеры
 
-//! Сеттеры - установка времени
-// console.log(now.setHours(11));
-// console.log(now.setDate(11));
-// console.log(now.setMonth(10));
-// console.log(now.setYear(2011));
+// new Date.parse('2020-05-01');
 
-//! Простенький Benchmark - Посмотреть производительность системы
-let start = new Date(); //? Текущая дата
+// console.log(now.setHours(15)); // изменяет часы
+// console.log(now);
 
+let start = new Date();
 for (let i = 0; i < 100000; i++) {
-    let some = i ** 3; //? ** Возводит в степень
+    let some = i ** 3;
 }
-
-let end = new Date(); //? Конечная дата
-
-alert(`Отработал за ${end - start} миллисекунд`);
+let end = new Date();
+console.log(`worked ${end - start} milisecond`)
