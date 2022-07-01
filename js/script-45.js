@@ -1,36 +1,34 @@
-"use strict";
+// "use strict";
 
-const num = new Number(3);
-console.log(num);
+//* Функции конструкторы ES - «5»
 
-//* Конструктор User
+//! Устаревший вид
+// const num = new Function(3);
+// console.log(num);
+
 function User(name, id) {
     this.name = name;
     this.id = id;
     this.human = true;
-
-    //* Создание метода объекта
-    this.hello = function() {
+    //* Метод функции конструктора «User»
+    this.hello = function()  {
         console.log(`Hello ${this.name}`);
     };
-
 }
 
-
-//*Свойство prototype с помощью него можно добовлять методы в конструктор
-//! Добавлен метод exit
+//* Добавляем метод в функцию конструктор «User»
 User.prototype.exit = function() {
-    console.log(`Пользователь ${this.name} ушел!`);
+    console.log(`User ${this.name} left`);
 }
 
-const ivan = new User('Ivan', 28);
-const alex = new User('Alex', 30);
+const ivan = new User('Ivan', 22);
+const max = new User('Max', 25);
+// const t2 = new User('T2', 100, false)
 
-console.log(ivan.id);
-
-// console.log(ivan);
-// console.log(alex);
-
+//* Вызываем методы функции конструктора «User»
 ivan.hello();
-alex.hello();
-ivan.exit();
+ivan.exit(); 
+max.hello();
+
+console.log(ivan);
+console.log(max);
