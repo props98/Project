@@ -1,29 +1,25 @@
 'use strict';
 
-//! Классы - в стандарте ES6
+//* 2015год -> Классы - в стандарте ES6
+//* Синтактический сахар
 
-//* Создание класса, НАЗЫВАЕТЬСЯ ВСЕГДА С БОЛЬШОЙ БУКВЫ
-//* Концепции
 class Rectangle {
     constructor(height, width) {
         this.height = height;
         this.width = width;
     }
 
-    //* Создаем МЕТОД класса без «function» (считает площадь прямоугольника)
     calcArea() {
         return this.height * this.width;
     }
 }
 
-//* Создание класса наследуемый (extends) от Rectangle
+//* Наследование свойств и методов от класса «Rectangle»
 class ColoredRectangleWithText extends Rectangle {
     constructor(height, width, text, bgColor) {
-        //* метод «super» наследование height & width от родителя «Rectangle»
-        //* Всегда на первом месте, первой строчкой
+        //* Метод который вызывает конструктор родителя «Rectangle»
+        //! Должна быть всегда на первом месте в конструкторе при раскрытии конструктора
         super(height, width);
-
-        //* Присваивание
         this.text = text;
         this.bgColor = bgColor;
     }
@@ -33,18 +29,14 @@ class ColoredRectangleWithText extends Rectangle {
     }
 }
 
-// //* Создаем элемент квадрат и помещаем объект созданный классом
-// //* Экземпляры
-const square = new Rectangle(10, 10);
-const long = new Rectangle(20, 100);
-
-// //* вызовы
-// console.log(square.calcArea());
-// console.log(long.calcArea());
-
-
-const div = new ColoredRectangleWithText(25, 10, 'Hello world!', 'red');
+const div = new ColoredRectangleWithText(25, 10, 'Hello', 'yellow');
 
 div.showMyProps();
 console.log(div.calcArea());
-console.log(square.calcArea());
+
+// const square = new Rectangle(10, 10);
+// const long = new Rectangle(20, 100);
+
+// console.log(square.calcArea());
+// console.log(long.calcArea());
+
