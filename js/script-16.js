@@ -1,27 +1,27 @@
 "use strict";
 
-//! Простое копирование примитивов, передаются по значению
-let a = 5,
-    b = a;
+//* Передача по ссылке, по значению -> Оператор Spread
 
-b = b + 5;
-console.log(b); // 10
-console.log(a); // 5
+// //* Копирование через переменную
+// let a = 5,
+//     b = a;
 
-//! Передача по ссылке 
-const obj = {
-    a: 5,
-    b: 1
-};
-// const copy = obj; //! obj, массивы, функции -  передает ссылку на объект ! НЕ СОЗДАЕТ КОПИЮ
+// b = b + 5;
+// console.log(b);
+// console.log(a);
 
-// copy.a = 10; 
+// //* Ссылка на объект
+// const obj = {
+//     a: 5,
+//     b: 1
+// }
+// const copy = obj; // Передает ссылку на существующий объект
+
+// copy.a = 10;
 // console.log(copy);
 // console.log(obj);
 
-//! Использование функции для копировании объекта ||||>>>>  Первый метод клонирования
-//! Поверхностная копия объекта (Без вложенния, только первый уровень вложенности)
-
+//* Поверхностная копия объекта - вложенные свойства не копируются -> передает ссылку
 function copy(mainObj) {
     let objCopy = {};
 
@@ -29,8 +29,9 @@ function copy(mainObj) {
     for (key in mainObj) {
         objCopy[key] = mainObj[key];
     }
+
     return objCopy;
-};
+}
 
 const numbers = {
     a: 2,
@@ -41,43 +42,48 @@ const numbers = {
     }
 };
 
-const newNumbers = copy(numbers); //! Создание копии объета через функцию
+const newNumbers = copy(numbers);
 
-newNumbers.a = 10; //! Внесли изменения в скопированное свойство объекта
-// newNumbers.c.x = 10; //! Измения в копии второго уровня вложенности !!!не сработает
+newNumbers.a = 10;
+newNumbers.c.x = 10;
 
-console.log(numbers);
-console.log(newNumbers);
+// console.log(newNumbers);
+// console.log(numbers);
 
-//! Копирования объекта с помощью метода >>>>>> Object.asssign() ||||>>>> Второй метод клонирования
 
 const add = {
     d: 17,
-    e: 20
+    i: 20
 };
 
-const clone = Object.assign({}, add); //! Копия объекта
+//* Соединение объектов
 
-clone.d = 20; //! Замена свойтва объекта d = 20
+// console.log(Object.assign({numbers}, add));
+
+const clone = Object.assign({}, add);
+
+clone.d = 20;
+
 // console.log(add);
 // console.log(clone);
 
-//! Клонирование (Копия) Массива ||||>>>> Третий метод клонирования
 
+//* Копия массива
 const oldArray = ['a', 'b', 'c'];
 const newArray = oldArray.slice();
 
-newArray[1] = 'adsfasdfasd';
-console.log(oldArray);
+newArray[1] = 'asdfsdf';
 console.log(newArray);
+console.log(oldArray);
 
-//! ||| Оператор развертка массива(unpacking) "spread" ES8 |||||>>>>> Четвертый способ клонирования
 
-const video = ['youtube', 'vimeo', 'reatube'],
-      blogs = ['wordpress', 'livejournal', 'blogger'],
-      internet = [...video, ...blogs, 'vk', 'facebook']; //! массив всех свойств video, blogs
+//* Оператор разворота Spread - (...)
 
-// console.log(internet);
+const video = ['youtuve', 'vimeo', 'rutube'],
+      blogs = ['wordpress', 'lifejournal', 'blogger'],
+      internet = [...video, ...blogs, 'vk', 'facebook'];
+
+console.log(internet);
 
 function log(a, b, c) {
     console.log(a);
@@ -85,24 +91,17 @@ function log(a, b, c) {
     console.log(c);
 }
 
-const num = [2, 5 ,7];
-log(...num);
+const num2 = [2, 3, 4];
 
-//! Четвертый способ создания поверхностных копий объекта 
+log(...num2);
+
 
 const array = ['a', 'b'];
 const newAarray = [...array];
+
 const q = {
     one: 1,
     two: 2
-};
+}
+
 const newObj = {...q};
-
-newAarray[0] = 'adsfasdf';
-newObj.three = 7;
-newObj.one = 100;
-
-console.log(array);
-console.log(newAarray);
-console.log(q);
-console.log(newObj);
