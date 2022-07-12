@@ -1,39 +1,10 @@
 "use strict";
 
-let num = 20;
-
-function showFirstMessage(text) {
-    console.log(text);
-    // let num = 10; // 10
-    console.log(num); // 20
-}
-showFirstMessage('Hello world!');
-console.log(num); // 20
-
-//! Замыкание функции - Сама функуция вместе со всеми внешними переменными которые ей доступны
-
-function calc(a, b) {
-    return ( a + b );
-    console.log('eeeeeeeee'); //! после return функция не работает
-};
-console.log(calc(4, 3));
-console.log(calc(5, 6));
-console.log(calc(10, 6));
-
-
-function ret() {
-    let num = 50;
-    return num;
-};
-const anotherNum = ret();
-console.log(anotherNum);
-
-
 //! Виды функций
 //* Function declaration -
 //* Создается до начала выполнения скрипта, можно вызвать перед объявлением
 //?  function foo() {
-//?  ...
+//?     ...
 //?  }
 
 //* Function expression - 
@@ -49,8 +20,39 @@ console.log(anotherNum);
 //?      ...
 //?  };
 
+let num = 20;
 
-const calc = (a, b) => {
-    return a + b;
+function showFirstMessage(text) {
+    console.log(text);
+    // let num = 10;
+    console.log(num);
 }
-console.log(calc(3, 2));
+showFirstMessage('Hello world!');
+console.log(num);
+
+
+function calc(a, b) {
+    return (a + b);
+    // console.log('dew'); // После return код не выполняеться
+}
+console.log(calc(2, 3));
+console.log(calc(7, 3));
+console.log(calc(7, 13));
+
+function ret() {
+    let num = 50;
+
+    // какой-то код
+
+    return num;
+}
+const anotherNum = ret();
+console.log(anotherNum);
+
+
+const logger = function() {
+    console.log('Hello');
+};
+logger();
+
+const calc2 = (a, b) => a + b;
