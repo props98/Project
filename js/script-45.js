@@ -1,34 +1,37 @@
 // "use strict";
 
-//* Функции конструкторы ES - «5»
+//* Функции конструкторы стандарты ES - «5»
 
 //! Устаревший вид
-// const num = new Function(3);
-// console.log(num);
+const num = new Function(3);
+console.log(num);
 
+//! Функция конструктор - конструирование объектов
 function User(name, id) {
     this.name = name;
     this.id = id;
     this.human = true;
-    //* Метод функции конструктора «User»
-    this.hello = function()  {
+    //* Метод
+    this.hello = function() {
         console.log(`Hello ${this.name}`);
     };
 }
 
-//* Добавляем метод в функцию конструктор «User»
-User.prototype.exit = function() {
+//! Добавление метода через прототип
+User.prototype.exit = function(name) {
     console.log(`User ${this.name} left`);
-}
+};
 
-const ivan = new User('Ivan', 22);
-const max = new User('Max', 25);
-// const t2 = new User('T2', 100, false)
 
-//* Вызываем методы функции конструктора «User»
+const ivan = new User('Ivan', 28);
+const max = new User('Max', 20);
+
+ivan.exit();
+
 ivan.hello();
-ivan.exit(); 
 max.hello();
 
 console.log(ivan);
 console.log(max);
+
+//! Классы - синтактический сахар ES - 6
