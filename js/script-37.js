@@ -1,69 +1,74 @@
 "use strict";
 
-//! ClassList делегирование событий 
-const btns = document.querySelectorAll('button'),
-      wrapper = document.querySelector('.btn-block');
+//* ClassList и делегирование событий - динамические изменения
 
-//! Узнаем сколько классов у элемента
+const btns = document.querySelectorAll('button');
+
+//* Получение количество классов которе содержить элемент
 // console.log(btns[0].classList.length);
 
-//! Находим нужный класс элемента по индексу методом item()
-// console.log(btns[0].classList.item(1));
+//* Получение класса по его индексу начиная с 0
+// console.log(btns[0].classList.item(0));
 
-//! Добавляем нужный класс методом 
-// console.log(btns[1].classList.add('red', 'dfdfdf')); //!добавление второго класса
+//* Добавление класса в элементе
+// console.log(btns[1].classList.add('red', 'secondClass'));
+
+//* Удаление класса в элементе
 // console.log(btns[0].classList.remove('blue'));
-// console.log(btns[1].classList.add('red'));
-// console.log(btns[0].classList.toggle('blue'));
+
+//* Переключение классов
+// console.log(btns[0].classList.toggle('blue')); 
 
 // if (btns[1].classList.contains('red')) {
 //     console.log('red');
 // }
 
 btns[0].addEventListener('click', () => {
-    if (!btns[1].classList.contains('red')) {
-        btns[1].classList.add('red');
-    } else {
-        btns[1].classList.remove('red');
-    }
+    // if (!btns[1].classList.contains('red')) {
+    //     btns[1].classList.add('red');
+    // } else {
+    //     btns[1].classList.remove('red');
+    // }
 
-    // btns[1].classList.toggle('red'); //! Использовать с осторожностью
+    //* Используем Toggle
+    //! Toggle не всегда доступен
+    btns[1].classList.toggle('red');
 });
 
-// console.log(btns[0].className); //! СТАРЫЙ МЕТОД - выводит строку всех классов
+//! Не использовать className - выводит список классов одной строкой
+// console.log(btns[0].className);
 
-//! Сробатывание обработчика событий у всех кнопок в родителе
-// wrapper.addEventListener('click', (evt) => {
-//     if (evt.target && evt.target.tagName == "BUTTON") {
-//         console.log('hello');
-//     }
+
+//* Делегирование событий
+const wrapper = document.querySelector('.btn-block')
+
+wrapper.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // console.dir(event.target);
+    //! Проверяет и выводит к сонсоль Hello если событие происходит на кнопке «tagName»
+    // if (event.target && event.target.tagName == 'BUTTON') {
+    //     console.log('Hello!');
+    // }
+
+    //* Продтвинутое делегирование
+    if (event.target && event.target.matches('button.red')) {
+        console.log('Hello!');
+    }
+
+    //! Проверяет и выводит в консоль Hello если кнопка содержить класс «blue»
+    // if (event.target && event.target.classList.contains('blue')) {
+    //     console.log('Hello!');
+    // }
+});
+
+// //* Назначение события пребором
+// //! Событие не рабатоет на динамическом элементе
+// btns.forEach(btn => {
+//     btn.addEventListener('click', () => {
+//         console.log('forEach Hello');
+//     });
 // });
-
-//! Сробатывание обработчика событий если у определнггого тега с определеным классом есть совпадения.
-//! Google
-wrapper.addEventListener('click', (evt) => {
-    // if (evt.target && evt.target.tagName == 'BUTTON') {
-    //     console.log('Contains tagName "BUTTON"');
-    // };
-
-    // if (evt.target && evt.target.classList.contains('red')) {
-    //     console.log('Contains class RED');
-    // };
-
-    //! Google тема / метод - matches / совпадение элемента
-    if (evt.target && evt.target.matches('button.red')) {
-        console.log('hello');
-    }
-
-    // console.dir(evt.target);
-});
-
-//! Перебераем все кнопки и навешиваем на них событие Click, НЕ работает на созданных элементах в JS
-btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        console.log('Hello');
-    })
-})
 
 const btn = document.createElement('button');
 btn.classList.add('red');
