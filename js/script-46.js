@@ -1,40 +1,31 @@
 "use strict";
 
 //* Контекст вызова функции "this"
-//* То что окружает функцию и в каких условиях она вызываеться
+
+//! То что окружает функцию и в каких условиях она вызываеться
 
 //* 1) Обычная функция: this = window, но если use strict: this = undefined
 //* 2) Контекст у методов объекта - будет сам объект
 //* 3) This в конструкторах и классах - это новый экземпляр объекта
 //* 4) Ручная привязка «This» call, apply, bind
 
-
-//* Первая ситуация вызова This
-//! Без строгого режима такая конструкция будет ссылаться на «window»
-//! Со строгим режимом такая конструкция будет выводить «undefined»
-// function showThis() {
-//     console.log(this);
-// }
-// showThis();
-
-
-//* Вторая ситуация вызова This
+//* Обычная функция «this = window» но если стоит «use strict = undefined» 
 // function showThis(a, b) {
-//     console.log(this);
+//     // console.log(this);
 //     function sum() {
-//         console.log(this);
+//         // console.log(this);
 //         return a + b;
 //     }
-
 //     console.log(sum());
 // }
 // showThis(4, 5);
 
-
+//* Контекст у методов объекта - сам объект
 // const obj = {
 //     a: 20,
 //     b: 15,
 //     sum: function() {
+//         // console.log(this);
 //         function shout() {
 //             console.log(this);
 //         }
@@ -43,73 +34,77 @@
 // }
 // obj.sum();
 
-
-//* Третья ситуация вызова This
+//* This в конструктарах и классах это новвый экземпляр объекта
 // function User(name, id) {
-//     this.name = name;
-//     this.id = id;
-//     this.human = true;
+// this.name = name;
+// this.id = id;
+// this.human = true;
 //     this.hello = function() {
-//         console.log(`Hello! ${this.name}`);
+//         console.log(`Hello ${this.name}`);
 //     }
 // }
-// let max = new User('Max', 23);
+// let peter = new User('Peter', 25);
+// peter.hello();
 
-
-
-//* Четвертая ситуация вызова This
+//* Ручная привязка This: call, apply, bind
 // function sayName(surname) {
 //     console.log(this);
 //     console.log(this.name + surname);
 // }
 
 // const user = {
-//     name: 'Jhon'
+//     name: 'Peter'
 // };
 
-// sayName.call(user, 'Smith');
-// sayName.apply(user, ['Carter']);
+// sayName.call(user, 'Parker');
+// sayName.apply(user, ['Jhion']);
 
-//* Вызывает новую функцию
 // function count(num) {
 //     return this * num;
 // }
 
 // const double = count.bind(2);
-// console.log(double(33));
+// console.log(double(3));
+// console.log(double(10));
 
 
-//* Практика к уроку, разбор на кнопке
+//* Стролочная функция полная запись
+
+const double = (a) => {
+    return a * 2;
+}
+
+//* Стрелочные функции - укароченный вид 
+//* Если тело функции помещаеться в одну строку, можно опустить фигурные скобки и «return»
+//* Если один оргумент можно опустить круглые скобки
+// const double = a => a * 2;
+// console.log(double(5));
+
+
+//! Практическая задача
 
 const btn = document.querySelector('button');
 
-//! Имеем доступ к this
 btn.addEventListener('click', function() {
     this.style.backgroundColor = 'red';
 });
 
-//! Стрелочная функция контекст вызова теряется «This будет равна undefined»
-btn.addEventListener('click', () => {
-    this.style.backgroundColor = 'red';
-});
+//* Выводит undfind контекст вызова у стролочной функции теряеться
+//* Используется событие для стрелочной функции event.target
+// btn.addEventListener('click', (event) => {
+//     event.target.style.backgroundColor = 'red';
+// });
 
-//! Если в стрелочной функции передать event событые сработет
-btn.addEventListener('click', (event) => {
-    event.target.style.backgroundColor = 'red';
-});
-
-
-
-//! У стрелочной функции нет своего контекста вызова
-//* Метод стрелочная функция say ссылаеться на своего родителя, на метод sayNumber
-//* a метод sayNymber ссылветься на сам оюъект, выводом функции «say» будет объект «obj»
+//* Стрелочная функция say() ссылаеться на своего родителя на метод объекта sayNumber()
+//* метод объекта ссылаеться на сам объект, поэтому вызовом стрелочной функции say()
+//* будет вызов объкта obj
 const obj = {
     num: 5,
-    name: 'Max',
     sayNumber: function() {
         const say = () => {
-            console.log(this.name);
-        }
+            console.log(this);
+            console.log(this.num);
+        };
 
         say();
     }
@@ -119,9 +114,4 @@ obj.sayNumber();
 
 
 
-//* Стрелочные функции - укароченный вид 
-//* Если тело функции помещаеться в одну строку, можно опустить фигурные скобки и «return»
-//* Если один оргумент можно опустить круглые скобки
 
-const double = a => a * 2;
-console.log(double(5));
