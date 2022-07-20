@@ -1,6 +1,10 @@
 "use strict";
 
-// const obj = new Object(); //! Старая запись создания объекта
+//* Деструктуризация объектов
+
+//! Старый спобоб создания объекта
+// const obj = new Object();
+//////////////////////!
 
 const options = {
     name: 'test',
@@ -10,60 +14,73 @@ const options = {
         border: 'black',
         bg: 'red'
     }
-}
-console.log(options.colors.bg);
+};
+// console.log(options.name); -> test
+// console.log(options['colors']['border']); -> black
 
-// delete options.name; //! Удаляет свойство объекта
+//* Удаление свойства у объекта
+// delete options.name;
 // console.log(options);
 
-//! Перебор свойств в объекте при помощи «for ... in»
-//! Переменная для счетчика
+
+//* Перебор всех свойств в объекте for in
+// for (let key in options) {
+//     console.log(`Свойтва ${key} имеет значение ${options[key]}`);
+// }
+
+//* Перебор вложенного объекта
 let counter = 0;
+
 for (let key in options) {
-    //! Проверка с перебором вложеных объектов
     if (typeof(options[key]) === 'object') {
         for (let i in options[key]) {
-            console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
-            //! Подсчет количества свойств запись в «counter»
-            counter++;
+            console.log(`Свойтва ${i} имеет значение ${options[key][i]}`);
         }
     } else {
-        console.log(`Свойство ${key} имеет значение ${options[key]}`);
-        //! Подсчет количества свойств запись в «counter»
+        console.log(`Свойтва ${key} имеет значение ${options[key]}`);
         counter++;
     }
 }
-// console.log(counter);
+console.log(counter);
 
-////////////! Все свойства и методы ОБЪЕКТА на сайте MDN
 
-console.log(Object.keys(options).length);
+//* Документация MDM Object
+//* Методы объекта
 
-const man = {
-    name: 'Mike',
-    surname: 'Const',
-    age: 30,
-    pets: {
-        dog: 'Rex',
-        cat: 'Cat'
+const obj = {
+    name: 'test',
+    width: 1024,
+    height: 1024,
+    colors: {
+        border: 'black',
+        bg: 'red'
     },
-    city: 'Denver',
-    makeTest: function() {
-        console.log('TEST');
+    //* Созданный метод объекта
+    makeTest: function(str) {
+        console.log(str);
     }
-}
+};
+//* Получение массива из свойств объекта
+console.log(Object.keys(obj));
 
-// console.log(man);
-// console.log(Object.keys(man));
-// console.log(Object.keys(man).length);
+//* Получение количество свойст объекта из полученого массива
+console.log(Object.keys(obj).length);
 
-// man.makeTest();
+obj.makeTest('Hello');
 
-// for (let key in man) {
-//     console.log(`key: ${man[key]}`);
-// }
 
-//////////////! Деструктуризация объекта
+//////////////* Деструктуризация объекта
 
-const {dog, cat} = man.pets;
-console.log(cat);
+const obj2 = {
+    name: 'test',
+    width: 1024,
+    height: 1024,
+    colors: {
+        border: 'black',
+        bg: 'red'
+    }
+};
+
+//* Выносим свойства вложенного объекта в отдельные переменные диструктурируем 
+const {border, bg} = obj2.colors;
+console.log(bg);
