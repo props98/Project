@@ -2,30 +2,37 @@
 
 //* Callback Функции
 
-//Функция с задержкой, имитация работы функции с сервером
-function first() {
-    // do something
-    setTimeout(function () {
+function first(second) {
+    //DO Something
+    setTimeout(function() {
         console.log(1);
     }, 500);
+    second()
 }
 
 function second() {
     console.log(2);
 }
 
-first();
-second();
+first(second);
+
+// function line(a, b) {
+//     console.log(1);
+//     a();
+//     console.log(2);
+//     b();
+// }
+// line(first, second);
+
+
 
 function learnJS(lang, callback) {
-    console.log('I learn ' + lang);
+    console.log(`I learn: ${lang}`);
     callback();
 }
 
 function done() {
-    console.log('I passed this lesson');
+    console.log('I pass this lesson!');
 }
 
-//Передаем функцию не вызывая ее, функция вызывается в «learnJS»
 learnJS('JavaScript', done);
-
